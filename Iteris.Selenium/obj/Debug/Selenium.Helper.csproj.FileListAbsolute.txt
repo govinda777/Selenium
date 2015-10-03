@@ -1,0 +1,6 @@
+C:\Users\Administrator\Desktop\Selenium\Selenium\bin\Debug\Selenium.dll
+C:\Users\Administrator\Desktop\Selenium\Selenium\bin\Debug\Selenium.pdb
+C:\Users\Administrator\Desktop\Selenium\Selenium\bin\Debug\WebDriver.dll
+C:\Users\Administrator\Desktop\Selenium\Selenium\bin\Debug\WebDriver.xml
+C:\Users\Administrator\Desktop\Selenium\Selenium\obj\Debug\Selenium.dll
+C:\Users\Administrator\Desktop\Selenium\Selenium\obj\Debug\Selenium.pdb
