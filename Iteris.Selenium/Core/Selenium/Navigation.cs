@@ -10,14 +10,14 @@ using System.Configuration;
 
 namespace Iteris.Selenium.Core.Selemiun
 {
-    public class Navigation : Base, IDisposable
+    public class Navigation<T> : Base<T>, IDisposable where T : IWebDriver
     {
         public Navigation()
             : base()
         {
             Execute(() =>
             {
-                driverIe.Manage().Window.Maximize();
+                driver.Manage().Window.Maximize();
             });
         }
 
@@ -25,7 +25,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             Execute(() =>
             {
-                driverIe.Navigate().GoToUrl("about:blank");
+                driver.Navigate().GoToUrl("about:blank");
             });
         }
 
@@ -33,7 +33,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             ExecuteWithEvidence("Abrindo url", () =>
             {
-                driverIe.Navigate().GoToUrl(url);
+                driver.Navigate().GoToUrl(url);
             });
         }
 
@@ -41,7 +41,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             return Execute<string>(() =>
             {
-                return driverIe.Url;
+                return driver.Url;
             });
         }
 
@@ -49,7 +49,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             ExecuteWithEvidence("Voltando página", () =>
             {
-                driverIe.Navigate().Back();
+                driver.Navigate().Back();
             });
         }
 

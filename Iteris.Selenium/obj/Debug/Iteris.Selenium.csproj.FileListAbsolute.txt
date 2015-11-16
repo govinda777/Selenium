@@ -28,3 +28,13 @@ C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium\bin\Debug\WebDriver.Support.
 C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium\obj\Debug\Iteris.Selenium.csprojResolveAssemblyReference.cache
 C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium\obj\Debug\Selenium.dll
 C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium\obj\Debug\Selenium.pdb
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\obj\Debug\Iteris.Selenium.csprojResolveAssemblyReference.cache
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\obj\Debug\Selenium.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\obj\Debug\Selenium.pdb
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\Selenium.dll.config
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\Selenium.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\Selenium.pdb
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\WebDriver.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\WebDriver.Support.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\WebDriver.xml
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium\bin\Debug\WebDriver.Support.xml

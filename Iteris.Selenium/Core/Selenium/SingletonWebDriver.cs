@@ -23,6 +23,7 @@ namespace Iteris.Selenium.Core.Selemiun
         /// Pega o caminho do executável para criar o web driver do IE 
         /// </summary>
         private string IEServerselenium = ConfigurationManager.AppSettings["IEDriverServer"].ToString();
+        private string ChromeServerselenium = ConfigurationManager.AppSettings["ChromeServer"].ToString();
         private IWebDriver _driver;
 
         /// <summary>
@@ -53,6 +54,10 @@ namespace Iteris.Selenium.Core.Selemiun
             else if (typeof(T) == typeof(FirefoxDriver))
             {
                 return new FirefoxDriver();
+            }
+            else if (typeof(T) == typeof(ChromeDriver))
+            {
+                return new ChromeDriver(ChromeServerselenium);
             }
             else if (typeof(T) == typeof(OperaDriver))
             {

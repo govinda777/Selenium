@@ -34,3 +34,15 @@ C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium.Test\bin\Debug\WebDriver.Sup
 C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium.Test\obj\Debug\Iteris.Selenium.Test.csprojResolveAssemblyReference.cache
 C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium.Test\obj\Debug\Selenium.Test.dll
 C:\Users\lua.souza\Desktop\Selenium\Iteris.Selenium.Test\obj\Debug\Selenium.Test.pdb
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\Selenium.Test.dll.config
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\Selenium.Test.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\Selenium.Test.pdb
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\Selenium.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\WebDriver.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\WebDriver.Support.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\Selenium.pdb
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\WebDriver.xml
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\bin\Debug\WebDriver.Support.xml
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\obj\Debug\Iteris.Selenium.Test.csprojResolveAssemblyReference.cache
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\obj\Debug\Selenium.Test.dll
+E:\MeusDocs\Projetos Git\Selenium\Iteris.Selenium.Test\obj\Debug\Selenium.Test.pdb

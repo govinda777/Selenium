@@ -7,13 +7,13 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Iteris.Selenium.Core.Selemiun
 {
-    public class Element : Base
+    public class Element<T> : Base<T> where T : IWebDriver
     {
         public Element()
             : base()
         {
             Execute(() => {
-                driverIe.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             });
         }
 
@@ -21,7 +21,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {            
             return Execute<IWebElement>(() =>
             {
-                return driverIe.FindElement(By.Id(elementId));
+                return driver.FindElement(By.Id(elementId));
             });
         }
 
@@ -29,7 +29,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             return Execute<IWebElement>(() =>
             {
-                return driverIe.FindElement(By.Name(elementName));
+                return driver.FindElement(By.Name(elementName));
             });
         }
 
@@ -37,7 +37,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             return Execute<IWebElement>(() =>
             {
-                return driverIe.FindElement(By.ClassName(className));
+                return driver.FindElement(By.ClassName(className));
             });
         }
 
@@ -45,7 +45,7 @@ namespace Iteris.Selenium.Core.Selemiun
         {
             return Execute<IWebElement>(() =>
             {
-                return driverIe.FindElement(selector);
+                return driver.FindElement(selector);
             });
         }
 
@@ -55,9 +55,9 @@ namespace Iteris.Selenium.Core.Selemiun
 
             ExecuteWithEvidence(evidenceName, () =>
             {
-                driverIe.SwitchTo().ActiveElement().Equals(driverIe.FindElement(selector));
+                driver.SwitchTo().ActiveElement().Equals(driver.FindElement(selector));
 
-                driverIe.FindElement(selector).Submit();
+                driver.FindElement(selector).Submit();
             });
         }
 
@@ -67,9 +67,9 @@ namespace Iteris.Selenium.Core.Selemiun
 
             ExecuteWithEvidence(evidenceName, () =>
             {
-                driverIe.SwitchTo().ActiveElement().Equals(driverIe.FindElement(selector));
+                driver.SwitchTo().ActiveElement().Equals(driver.FindElement(selector));
 
-                driverIe.FindElement(selector).Click();
+                driver.FindElement(selector).Click();
             });
         }
 

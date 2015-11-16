@@ -52,11 +52,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelperTest\ScreenCaptureTest.cs" />
+    <Compile Include="SeleniumTest\Core\Helper\ScreenCaptureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeleniumTest\NavigationTest.cs" />
-    <Compile Include="SeleniumTest\ElementTest.cs" />
-    <Compile Include="SeleniumTest\TestCase.cs" />
+    <Compile Include="SeleniumTest\Core\NavigationTest.cs" />
+    <Compile Include="SeleniumTest\Core\ElementTest.cs" />
+    <Compile Include="TestCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

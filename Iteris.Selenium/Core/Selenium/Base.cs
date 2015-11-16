@@ -14,25 +14,15 @@ using System.IO;
 
 namespace Iteris.Selenium.Core.Selemiun
 {
-    public interface teste
+    public class Base<T> where T : IWebDriver
     {
-
-        void teste1();
-
-        string r;
-
-    }
-
-
-    public class Base
-    {
-        public readonly IWebDriver driverIe;
+        public readonly IWebDriver driver;
         private string _pathEvidence = @"C:\Evidencias\" + DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
         private ScreenCapture screenCapture;
 
         public Base() 
         {
-            driverIe = SingletonWebDriver<InternetExplorerDriver>.GetInstance().GetDriver();
+            driver = SingletonWebDriver<T>.GetInstance().GetDriver();
             screenCapture = new ScreenCapture();
         }
         
