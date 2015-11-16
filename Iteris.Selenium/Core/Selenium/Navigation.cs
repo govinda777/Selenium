@@ -10,8 +10,15 @@ using System.Configuration;
 
 namespace Iteris.Selenium.Core.Selemiun
 {
+    /// <summary>
+    /// Classe responsavel pelos métodos de navegação 
+    /// </summary>
+    /// <typeparam name="T">Classe que implementa IWebDriver</typeparam>
     public class Navigation<T> : Base<T>, IDisposable where T : IWebDriver
     {
+        /// <summary>
+        /// Construtor 
+        /// </summary>
         public Navigation()
             : base()
         {
@@ -21,6 +28,9 @@ namespace Iteris.Selenium.Core.Selemiun
             });
         }
 
+        /// <summary>
+        /// Fecha o Browser
+        /// </summary>
         public void CloseWebBrowser()
         {
             Execute(() =>
@@ -29,6 +39,10 @@ namespace Iteris.Selenium.Core.Selemiun
             });
         }
 
+        /// <summary>
+        /// Abre uma URL
+        /// </summary>
+        /// <param name="url"></param>
         public void OpenUrl(string url)
         {
             ExecuteWithEvidence("Abrindo url", () =>
@@ -37,6 +51,10 @@ namespace Iteris.Selenium.Core.Selemiun
             });
         }
 
+        /// <summary>
+        /// Pega a corrente URL
+        /// </summary>
+        /// <returns></returns>
         public string GetCurrentUrl()
         {
             return Execute<string>(() =>
@@ -45,6 +63,9 @@ namespace Iteris.Selenium.Core.Selemiun
             });
         }
 
+        /// <summary>
+        /// Simula o botão voltar
+        /// </summary>
         public void NavigateBack()
         {
             ExecuteWithEvidence("Voltando página", () =>
@@ -53,6 +74,9 @@ namespace Iteris.Selenium.Core.Selemiun
             });
         }
 
+        /// <summary>
+        /// Fecha o browser
+        /// </summary>
         public void Dispose()
         {
             CloseWebBrowser();

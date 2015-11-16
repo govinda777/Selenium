@@ -9,28 +9,25 @@ namespace Iteris.Selenium.Test
     [TestClass]
     public class TestCase
     {
-        Element<ChromeDriver> element;
-        Navigation<ChromeDriver> navigation;
+        Tools<ChromeDriver> Tools;
         public const string APPURL = @"http://pi:17000/_layouts/redecard/Login.aspx";
 
         [TestInitialize]
         public void TestInitialize()
         {
-            element = new Element<ChromeDriver>();
-            navigation = new Navigation<ChromeDriver>();
-
-            navigation.OpenUrl(APPURL);
+            Tools = new Tools<ChromeDriver>();
+            Tools.Navigation.OpenUrl(APPURL);
         }
 
         [TestMethod]
         public void TestCase1()
         {
-            var usuario = element.FindElementById("ctl00_PlaceHolderMain_UserName");
-            var pass = element.FindElementById("ctl00_PlaceHolderMain_Password");
+            var usuario = Tools.Element.FindElementById("ctl00_PlaceHolderMain_UserName");
+            var pass = Tools.Element.FindElementById("ctl00_PlaceHolderMain_Password");
 
-            element.SendKeys(usuario,"administrator");
-            element.SendKeys(pass,"It3r1510");
-            element.Click(By.ClassName("botao-principal"));
+            Tools.Element.SendKeys(usuario, "administrator");
+            Tools.Element.SendKeys(pass, "It3r1510");
+            Tools.Element.Click(By.ClassName("botao-principal"));
 
         }
 

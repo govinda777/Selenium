@@ -16,7 +16,7 @@ namespace Iteris.Selenium.Core.Selemiun
     /// Classe responsável por impedir que existam várias instancias de WebDriver, 
     /// o tipo T apenas pode ser uma classe que implementa IWebDriver
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Classe que implementa IWebDriver</typeparam>
     public class SingletonWebDriver<T> where T : IWebDriver
     {
         /// <summary>
