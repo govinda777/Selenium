@@ -56,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeleniumTest\Core\NavigationTest.cs" />
     <Compile Include="SeleniumTest\Core\ElementTest.cs" />
-    <Compile Include="TestCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -64,9 +63,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Iteris.Selenium\Iteris.Selenium.csproj">
+    <ProjectReference Include="..\Iteris.Selenium\Facade.Selenium.csproj">
       <Project>{ad181fa3-1920-45f2-b9db-9f5c9ee69e9c}</Project>
-      <Name>Iteris.Selenium</Name>
+      <Name>Facade.Selenium</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Iteris.Selenium.Core.Selemiun
+namespace Facade.Selenium.Core.Selemiun
 {
     /// <summary>
     /// Classe responsável pela manipulação dos elementos

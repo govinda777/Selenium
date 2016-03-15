@@ -7,12 +7,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using System.Configuration;
-using Iteris.Selenium.Core.Helper;
+using Facade.Selenium.Core.Helper;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace Iteris.Selenium.Core.Selemiun
+namespace Facade.Selenium.Core.Selemiun
 {
     /// <summary>
     /// Classe base para Selemiun

@@ -8,7 +8,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using System.Configuration;
 
-namespace Iteris.Selenium.Core.Selemiun
+namespace Facade.Selenium.Core.Selemiun
 {
     /// <summary>
     /// Classe responsavel pelos métodos de navegação 

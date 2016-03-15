@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Iteris.Selenium.Core.Helper;
-using Iteris.Selenium.Core.Selemiun;
+using Facade.Selenium.Core.Helper;
+using Facade.Selenium.Core.Selemiun;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Iteris.Selenium.Test.SeleniumTest.Core
+namespace Facade.Selenium.Test.SeleniumTest.Core
 {
     [TestClass]
     public class ElementTest 

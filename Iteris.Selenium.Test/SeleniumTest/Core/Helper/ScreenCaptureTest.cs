@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using Iteris.Selenium.Core.Helper;
-using Iteris.Selenium.Core.Selemiun;
+using Facade.Selenium.Core.Helper;
+using Facade.Selenium.Core.Selemiun;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Iteris.Selenium.Test.SeleniumTest.Core.Helper
+namespace Facade.Selenium.Test.SeleniumTest.Core.Helper
 {
     [TestClass]
     public class ScreenCaptureTest

@@ -54,7 +54,6 @@
     <Compile Include="Core\Selenium\Navigation.cs" />
     <Compile Include="Core\Selenium\SingletonWebDriver.cs" />
     <Compile Include="Core\Helper\ScreenCapture.cs" />
-    <Compile Include="Core\Selenium\Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
