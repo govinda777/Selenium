@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace Facade.Selenium.Core.Helper
+namespace Facade.Selenium.Infra.Helper
 {
     /// <summary>
     /// Provides functions to capture the entire screen, 

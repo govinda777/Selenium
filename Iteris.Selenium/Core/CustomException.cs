@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Facade.Selenium.Core.Selemiun
+namespace Facade.Selenium.Core
 {
     [Serializable]
     public class FacadeSelemiunException : Exception

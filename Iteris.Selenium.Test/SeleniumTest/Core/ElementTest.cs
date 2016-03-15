@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Facade.Selenium.Core.Helper;
-using Facade.Selenium.Core.Selemiun;
+using Facade.Selenium.Infra;
+using Facade.Selenium.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 

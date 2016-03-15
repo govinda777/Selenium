@@ -7,12 +7,13 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using System.Configuration;
-using Facade.Selenium.Core.Helper;
+using Facade.Selenium.Infra;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using Facade.Selenium.Infra.Helper;
 
-namespace Facade.Selenium.Core.Selemiun
+namespace Facade.Selenium.Core
 {
     /// <summary>
     /// Classe base para Selemiun
