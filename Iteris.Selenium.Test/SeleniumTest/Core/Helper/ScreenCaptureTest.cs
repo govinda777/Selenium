@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using Facade.Selenium.Core.Helper;
-using Facade.Selenium.Core.Selemiun;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Facade.Selenium.Infra.Helper;
+using Facade.Selenium.Core;
+
 
 namespace Facade.Selenium.Test.SeleniumTest.Core.Helper
 {
-    [TestClass]
+    
     public class ScreenCaptureTest
     {
-        [TestMethod]
+        
         public void CaptureScreenTest()
         {
             ScreenCapture sc = new ScreenCapture();

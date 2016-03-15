@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace Facade.Selenium.Infra.Helper
 {
@@ -11,6 +12,18 @@ namespace Facade.Selenium.Infra.Helper
     /// </summary>
     public class ScreenCapture
     {
+        private string _pathEvidence;
+
+        public ScreenCapture()
+        {
+            _pathEvidence = @"C:\Evidencias\";
+        }
+
+        public ScreenCapture(string pathEvidence)
+        {
+            _pathEvidence = pathEvidence;
+        }
+
         /// <summary>
         /// Creates an Image object containing a screen shot of the entire desktop
         /// </summary>
@@ -121,6 +134,35 @@ namespace Facade.Selenium.Infra.Helper
             public static extern IntPtr ReleaseDC(IntPtr hWnd,IntPtr hDC);
             [DllImport("user32.dll")]
             public static extern IntPtr GetWindowRect(IntPtr hWnd,ref RECT rect);
+        }
+        
+        /// <summary>
+        /// Faz um print da tela e o salva sem um diretório previamente definido
+        /// </summary>
+        /// <param name="evidenceName">Nome do arquivo que será salvo como evidencia</param>
+        public void CaptureScreen(string evidenceName)
+        {
+            if (!Directory.Exists(_pathEvidence))
+            {
+                Directory.CreateDirectory(_pathEvidence);
+            }
+
+            string file = string.Concat(DateTime.Now.Hour, "-",
+                                         DateTime.Now.Minute, "-",
+                                         DateTime.Now.Second,
+                                         " ",
+                                         string.IsNullOrEmpty(evidenceName) ? string.Empty : evidenceName,
+                                        ".gif");
+
+            try
+            {
+                CaptureScreen().Save(Path.Combine(_pathEvidence, file), ImageFormat.Gif);
+            }
+            catch (Exception)
+            {
+                
+            }
+
         }
     }
 }

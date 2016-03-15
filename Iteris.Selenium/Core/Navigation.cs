@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
-using System.Configuration;
 
 namespace Facade.Selenium.Core
 {
@@ -19,8 +12,8 @@ namespace Facade.Selenium.Core
         /// <summary>
         /// Construtor 
         /// </summary>
-        public Navigation()
-            : base()
+        public Navigation(string driverServerDirectory)
+            : base(driverServerDirectory)
         {
             Execute(() =>
             {

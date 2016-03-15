@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -16,8 +13,8 @@ namespace Facade.Selenium.Core
         /// <summary>
         /// Construtor
         /// </summary>
-        public Element()
-            : base()
+        public Element(string driverServerDirectory)
+            : base(driverServerDirectory)
         {
             Execute(() => {
                 driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));

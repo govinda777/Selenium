@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using System.Configuration;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Opera;
+using System;
 
 namespace Facade.Selenium.Core
 {
@@ -19,11 +15,7 @@ namespace Facade.Selenium.Core
     /// <typeparam name="T">Classe que implementa IWebDriver</typeparam>
     public class SingletonWebDriver<T> where T : IWebDriver
     {
-        /// <summary>
-        /// Pega o caminho do executável para criar o web driver do IE 
-        /// </summary>
-        private string IEServerselenium = ConfigurationManager.AppSettings["IEDriverServer"].ToString();
-        private string ChromeServerselenium = ConfigurationManager.AppSettings["ChromeServer"].ToString();
+        private string _driverServerDirectory;
         private IWebDriver _driver;
 
         /// <summary>
@@ -34,37 +26,23 @@ namespace Facade.Selenium.Core
         /// <summary>
         /// Construtor receberá qualquer classe que implemente IWebDriver conforme fala a assinatura da classe  
         /// </summary>
-        /// <param name="type">Qual quer classe que implemente a interface IWebDriver</param>
-        public SingletonWebDriver() 
+        public SingletonWebDriver(string driverServerDirectory) 
         {
+            _driverServerDirectory = driverServerDirectory;
             _driver = GetWebDriver();
         }
 
         /// <summary>
         /// Retorna uma nova instancia de WebDriver de acordo com o tipo
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         private IWebDriver GetWebDriver()
         {
-            if(typeof(T) == typeof(InternetExplorerDriver))
-            {
-                return new InternetExplorerDriver(IEServerselenium);
-            }
-            else if (typeof(T) == typeof(FirefoxDriver))
+            if (typeof(T) == typeof(FirefoxDriver))
             {
                 return new FirefoxDriver();
             }
-            else if (typeof(T) == typeof(ChromeDriver))
-            {
-                return new ChromeDriver(ChromeServerselenium);
-            }
-            else if (typeof(T) == typeof(OperaDriver))
-            {
-                return new OperaDriver();
-            }
-
-            return null;
+            
+            return (T)Activator.CreateInstance(typeof(T) , new object[] { _driverServerDirectory });
         }
 
         /// <summary>
@@ -79,13 +57,12 @@ namespace Facade.Selenium.Core
         /// <summary>
         /// Retorna a unica instancia de SingletonWebDriver caso ainda não tenha sido instanciado
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static SingletonWebDriver<T> GetInstance()
+        /// <param name="driverServerDirectory">Caminho que está o Webdriver</param>
+        public static SingletonWebDriver<T> GetInstance(string driverServerDirectory)
         {            
             if (_uniqueInstance == null)
             {
-                _uniqueInstance = new SingletonWebDriver<T>();
+                _uniqueInstance = new SingletonWebDriver<T>(driverServerDirectory);
             }
 
             return _uniqueInstance;

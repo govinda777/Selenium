@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
-using System.Configuration;
-using Facade.Selenium.Infra;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Facade.Selenium.Infra.Helper;
@@ -22,19 +13,28 @@ namespace Facade.Selenium.Core
     public abstract class Base<T> where T : IWebDriver
     {
         public readonly IWebDriver driver;
-        private string _pathEvidence = @"C:\Evidencias\" + DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
         private ScreenCapture screenCapture;
+        
+        /// <summary>
+        /// Construtor
+        /// Pega uma instancia de IWebDriver de acordo com o driver requisitado 
+        /// </summary>
+        public Base(string driverServerDirectory) 
+        {
+            driver = SingletonWebDriver<T>.GetInstance(driverServerDirectory).GetDriver();
+            screenCapture = new ScreenCapture();
+        }
 
         /// <summary>
         /// Construtor
         /// Pega uma instancia de IWebDriver de acordo com o driver requisitado 
         /// </summary>
-        public Base() 
+        public Base(string driverServerDirectory, string pathEvidence)
         {
-            driver = SingletonWebDriver<T>.GetInstance().GetDriver();
-            screenCapture = new ScreenCapture();
+            driver = SingletonWebDriver<T>.GetInstance(driverServerDirectory).GetDriver();
+            screenCapture = new ScreenCapture(pathEvidence);
         }
-        
+
         #region Execute
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Facade.Selenium.Core
             }
             catch (Exception ex)
             {
-                LogarErro(ex);
+                LogError(ex);
             }
         }
 
@@ -69,10 +69,10 @@ namespace Facade.Selenium.Core
             }
             catch (Exception ex)
             {
-                LogarErro(ex);
+                LogError(ex);
             }
 
-            return (T)Activator.CreateInstance(typeof(T));;
+            return (T)Activator.CreateInstance(typeof(T));
         }
 
         #endregion
@@ -96,7 +96,7 @@ namespace Facade.Selenium.Core
         public void ExecuteWithEvidence(string evidenceName, Action action)
         {
             Execute(action);
-            CaptureScreen(evidenceName);   
+            screenCapture.CaptureScreen(evidenceName);   
         }
 
         /// <summary>
@@ -121,55 +121,18 @@ namespace Facade.Selenium.Core
         {
             T result = Execute<T>(action);
 
-            CaptureScreen(evidenceName);
+            new ScreenCapture().CaptureScreen(evidenceName);
 
             return result;
         }
 
         #endregion
 
-        public void LogarErro(Exception ex)
+        public void LogError(Exception ex)
         {
 
         }
 
-        /// <summary>
-        /// Faz um print da tela e o salva sem um diretório previamente definido
-        /// </summary>
-        public void CaptureScreen()
-        {
-            CaptureScreen(string.Empty);
-        }
-
-        /// <summary>
-        /// Faz um print da tela e o salva sem um diretório previamente definido
-        /// </summary>
-        /// <param name="evidenceName">Nome do arquivo que será salvo como evidencia</param>
-        public void CaptureScreen(string evidenceName)
-        {
-            if (!Directory.Exists(_pathEvidence))
-            {
-                Directory.CreateDirectory(_pathEvidence);
-            }
-
-            string file  = string.Concat(DateTime.Now.Hour , "-" , 
-                                         DateTime.Now.Minute , "-" , 
-                                         DateTime.Now.Second,
-                                         " ",
-                                         string.IsNullOrEmpty(evidenceName) ? string.Empty : evidenceName,
-                                        ".gif");
-
-            try
-            {
-                screenCapture.CaptureScreen()
-                             .Save(Path.Combine(_pathEvidence, file), ImageFormat.Gif);
-            }
-            catch (Exception ex)
-            {
-                LogarErro(ex);
-            }
-            
-        }
     }
 
 }
