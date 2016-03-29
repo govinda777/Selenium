@@ -8,13 +8,14 @@ namespace Facade.Selenium.Test.SeleniumTest.Core
     //[TestClass]
     public class NavigationTest
     {
-        Navigation<ChromeDriver> navigation;
+        /*
+        //Navigation<ChromeDriver> navigation;
         public string driverServerDirectory;
 
        // [TestInitialize]
         public void TestInitialize()
         {
-            navigation = new Navigation<ChromeDriver>(driverServerDirectory);
+            //navigation = new Navigation<ChromeDriver>(driverServerDirectory);
         }
 
         //[TestMethod]
@@ -58,5 +59,6 @@ namespace Facade.Selenium.Test.SeleniumTest.Core
             navigation.Dispose();
             navigation = null;
         }
+        */
     }
 }

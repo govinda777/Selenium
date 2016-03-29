@@ -3,137 +3,74 @@ using Facade.Selenium.Infra;
 using Facade.Selenium.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Xunit;
+using Xunit.Extensions;
+using Selenium.Test.SeleniumTest.Core;
+using System.Collections.Generic;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Opera;
+using SeleniumCore = Facade.Selenium.Core;
+using System.Collections;
 
 namespace Facade.Selenium.Test.SeleniumTest.Core
 {
-    
-    public class ElementTest 
+    public class ElementTest
     {
-        Element<ChromeDriver> element;
-        Navigation<ChromeDriver> navigation;
-
         const string ID_ELEMENT = "usuario";        
         const string NAME_ELEMENT = "user";
         const string CLASS_ELEMENT = "cor9";
         const string CLASS_ELEMENT_BTN = "buttonSubmit";
         public string driverServerDirectory;
-
-
-
-        public void TestInitialize()
-        {
-            element = new Element<ChromeDriver>(driverServerDirectory);
-            navigation = new Navigation<ChromeDriver>(driverServerDirectory);
-
-            navigation.OpenUrl("http://www.uol.com.br/");
-        }
-
         
-        public void FindElementByIdTest()
+        public ElementTest()
         {
-            var elm = element.FindElementById(ID_ELEMENT);
 
-            //Assert.IsTrue(elm != null);
-        }
-
-        //[TestMethod]
-        public void FindElementByNameTest()
-        {
-            var elm = element.FindElementByName(NAME_ELEMENT);
-
-            //Assert.IsTrue(elm != null);
-        }
-
-        //[TestMethod]
-        public void FindElementByClassNameTest()
-        {
-            var elm = element.FindElementByClassName(CLASS_ELEMENT);
-
-            //Assert.IsTrue(elm != null);
-        }
-
-        //[TestMethod]
-        public void FindElement()
-        {
-            var elm = element.FindElement(By.Name(NAME_ELEMENT));
-
-            //Assert.IsTrue(elm != null);
-        }
-
-        //[TestMethod]
-        public void SendKeysTest()
-        {
-            var elm = element.FindElementById(ID_ELEMENT);
-
-            element.SendKeys(elm, "Selenium");
-
-            var value = element.GetAttribute(ID_ELEMENT, "value");
-
-            //Assert.IsTrue(value == "Selenium");
         }
         
-        //[TestMethod]
-        public void GetAttributeTest()
+        public static IEnumerable<object> Browsers
         {
-            var elm = element.FindElementById(ID_ELEMENT);
+            get
+            {
+                var result = new [] {
+                                    new [] { new SeleniumCore.Selenium(typeof(InternetExplorerDriver)) },
+                                    new [] { new SeleniumCore.Selenium(typeof(FirefoxDriver)) },
+                                    new [] { new SeleniumCore.Selenium(typeof(OperaDriver)) }
+                                };
 
-            element.SendKeys(elm, "Selenium");
-
-            var value = element.GetAttribute(ID_ELEMENT, "value");
-
-            //Assert.IsTrue(value == "Selenium");
+                yield return result;
+            }
         }
 
-       // [TestMethod]
-        public void GetValueTest()
+        [Theory]
+        [Browser(typeof(FirefoxDriver))]
+        [Browser(typeof(InternetExplorerDriver))]
+        [Browser(typeof(OperaDriver))]
+        public void FindElementByIdTest(SeleniumCore.Selenium selenium)
         {
-            var elm = element.FindElementById(ID_ELEMENT);
-
-            element.SendKeys(elm, "Selenium");
-
-            var value = element.GetValue(ID_ELEMENT);
-
-            ///Assert.IsTrue(value == "Selenium");
+            selenium.Initialize();
         }
 
-        //[TestMethod]
-        public void SubmitTest()
+        [Theory]
+        [ClassData(typeof(FibonacciTestSource))]
+        public void Test_List_Browser(SeleniumCore.Selenium selenium)
         {
-            element.Submit(By.ClassName(CLASS_ELEMENT_BTN));
-
-            var url = navigation.GetCurrentUrl();
-
-            //Assert.IsTrue(url == "https://acesso.uol.com.br/login.html?skin=webmail");
+            selenium.Initialize();
         }
 
-        //[TestMethod]
-        public void ClickTest()
+    }
+
+    public class FibonacciTestSource : IEnumerable<object[]>
+    {
+        public IEnumerator<object[]> GetEnumerator()
         {
-            element.Click(By.ClassName(CLASS_ELEMENT_BTN));
-
-            var url = navigation.GetCurrentUrl();
-
-          //  Assert.IsTrue(url == "https://acesso.uol.com.br/login.html?skin=webmail");
+            yield return new object[] { new SeleniumCore.Selenium(typeof(InternetExplorerDriver)) };
+            yield return new object[] { new SeleniumCore.Selenium(typeof(FirefoxDriver)) };
         }
-
-        //[TestMethod]
-        public void SelectDropDownByValueTest()
-        {            
-
-        }
-
-        //[TestMethod]
-        public void SelectDropDownByTextTest()
-        {            
-        }
-
-
-        //[TestCleanup]
-        public void TestCleanup()
+        
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            navigation.Dispose();
-            navigation = null;
-            element = null;
+            return GetEnumerator();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using OpenQA.Selenium;
 
 namespace Facade.Selenium.Core
 {
@@ -7,19 +6,34 @@ namespace Facade.Selenium.Core
     /// Classe responsavel pelos métodos de navegação 
     /// </summary>
     /// <typeparam name="T">Classe que implementa IWebDriver</typeparam>
-    public class Navigation<T> : Base<T>, IDisposable where T : IWebDriver
+    public class Navigation : Base
     {
-        /// <summary>
-        /// Construtor 
-        /// </summary>
-        public Navigation(string driverServerDirectory)
-            : base(driverServerDirectory)
+        public Navigation(Type webDriverType, string driverServerDirectory, string pathEvidence)
+            : base(webDriverType, driverServerDirectory, pathEvidence)
+        {
+            Initialize();
+        }
+
+        public Navigation(Type webDriverType, string driverServerDirectory)
+            : base(webDriverType, driverServerDirectory)
+        {
+            Initialize();
+        }
+
+        public Navigation(Type webDriverType)
+            : base(webDriverType)
+        {
+            Initialize();
+        }
+
+        public void Initialize()
         {
             Execute(() =>
             {
                 driver.Manage().Window.Maximize();
             });
         }
+
 
         /// <summary>
         /// Fecha o Browser

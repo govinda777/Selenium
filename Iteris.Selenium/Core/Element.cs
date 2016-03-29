@@ -8,13 +8,27 @@ namespace Facade.Selenium.Core
     /// Classe responsável pela manipulação dos elementos
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Element<T> : Base<T> where T : IWebDriver
+    public class Element : Base
     {
-        /// <summary>
-        /// Construtor
-        /// </summary>
-        public Element(string driverServerDirectory)
-            : base(driverServerDirectory)
+        public Element(Type webDriverType, string driverServerDirectory, string pathEvidence)
+            : base(webDriverType, driverServerDirectory, pathEvidence)
+        {
+            Initialize();
+        }
+        
+        public Element(Type webDriverType, string driverServerDirectory)
+            : base(webDriverType, driverServerDirectory)
+        {
+            Initialize();
+        }
+        
+        public Element(Type webDriverType)
+            : base(webDriverType)
+        {
+            Initialize();
+        }
+
+        public void Initialize()
         {
             Execute(() => {
                 driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));

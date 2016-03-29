@@ -1,7 +1,5 @@
 ﻿using System;
 using OpenQA.Selenium;
-using System.Drawing.Imaging;
-using System.IO;
 using Facade.Selenium.Infra.Helper;
 
 namespace Facade.Selenium.Core
@@ -10,29 +8,28 @@ namespace Facade.Selenium.Core
     /// Classe base para Selemiun
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Base<T> where T : IWebDriver
+    public abstract class Base
     {
         public readonly IWebDriver driver;
+        private string _driverServerDirectory;
+        private string _pathEvidence;
+
         private ScreenCapture screenCapture;
         
-        /// <summary>
-        /// Construtor
-        /// Pega uma instancia de IWebDriver de acordo com o driver requisitado 
-        /// </summary>
-        public Base(string driverServerDirectory) 
+        public Base(Type webDriverType)
         {
-            driver = SingletonWebDriver<T>.GetInstance(driverServerDirectory).GetDriver();
-            screenCapture = new ScreenCapture();
+            driver = SingletonWebDriver.GetInstance(webDriverType, _driverServerDirectory).GetDriver();
+            screenCapture = new ScreenCapture(_pathEvidence);
         }
-
-        /// <summary>
-        /// Construtor
-        /// Pega uma instancia de IWebDriver de acordo com o driver requisitado 
-        /// </summary>
-        public Base(string driverServerDirectory, string pathEvidence)
+        
+        public Base(Type webDriverType, string driverServerDirectory) : this(webDriverType)
         {
-            driver = SingletonWebDriver<T>.GetInstance(driverServerDirectory).GetDriver();
-            screenCapture = new ScreenCapture(pathEvidence);
+            _driverServerDirectory = driverServerDirectory;
+        }
+        
+        public Base(Type webDriverType, string driverServerDirectory, string pathEvidence) : this(webDriverType, driverServerDirectory)
+        {
+            _pathEvidence = pathEvidence;
         }
 
         #region Execute

@@ -1,9 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
-using System.Configuration;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Opera;
 using System;
 
 namespace Facade.Selenium.Core
@@ -12,43 +8,44 @@ namespace Facade.Selenium.Core
     /// Classe responsável por impedir que existam várias instancias de WebDriver, 
     /// o tipo T apenas pode ser uma classe que implementa IWebDriver
     /// </summary>
-    /// <typeparam name="T">Classe que implementa IWebDriver</typeparam>
-    public class SingletonWebDriver<T> where T : IWebDriver
+    public class SingletonWebDriver
     {
         private string _driverServerDirectory;
+        private Type _webDriverType;
         private IWebDriver _driver;
 
         /// <summary>
         /// Atributo estatico onde terá a unica intancia do web driver
         /// </summary>
-        private static SingletonWebDriver<T> _uniqueInstance;
+        private static SingletonWebDriver _uniqueInstance;
 
         /// <summary>
         /// Construtor receberá qualquer classe que implemente IWebDriver conforme fala a assinatura da classe  
         /// </summary>
-        public SingletonWebDriver(string driverServerDirectory) 
+        public SingletonWebDriver(Type webDriverType,  string driverServerDirectory) 
         {
+            _webDriverType = webDriverType;
             _driverServerDirectory = driverServerDirectory;
-            _driver = GetWebDriver();
+            _driver = GetWebDriver(_webDriverType);
         }
 
         /// <summary>
         /// Retorna uma nova instancia de WebDriver de acordo com o tipo
         /// </summary>
-        private IWebDriver GetWebDriver()
+        private IWebDriver GetWebDriver(Type webDriverType)
         {
-            if (typeof(T) == typeof(FirefoxDriver))
+            if (webDriverType == typeof(FirefoxDriver))
             {
-                return new FirefoxDriver();
+                return new FirefoxDriver(new FirefoxBinary(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"),
+                                         new FirefoxProfile());
             }
-            
-            return (T)Activator.CreateInstance(typeof(T) , new object[] { _driverServerDirectory });
+
+            return null;
         }
 
         /// <summary>
         /// Retorna o WebDriver 
         /// </summary>
-        /// <returns></returns>
         public IWebDriver GetDriver()
         {
             return _driver;
@@ -57,15 +54,29 @@ namespace Facade.Selenium.Core
         /// <summary>
         /// Retorna a unica instancia de SingletonWebDriver caso ainda não tenha sido instanciado
         /// </summary>
-        /// <param name="driverServerDirectory">Caminho que está o Webdriver</param>
-        public static SingletonWebDriver<T> GetInstance(string driverServerDirectory)
-        {            
-            if (_uniqueInstance == null)
+        public static SingletonWebDriver GetInstance(Type webDriverType, string driverServerDirectory)
+        {    
+            if (_uniqueInstance == null || webDriverType != _uniqueInstance._webDriverType)
             {
-                _uniqueInstance = new SingletonWebDriver<T>(driverServerDirectory);
+                Dispose();
+
+                if(_uniqueInstance != null)
+                {
+                    _uniqueInstance._webDriverType = webDriverType;
+                }
+
+                _uniqueInstance = new SingletonWebDriver(webDriverType, driverServerDirectory);
             }
 
             return _uniqueInstance;
+        }
+
+        private static void Dispose()
+        {
+            if(_uniqueInstance != null && _uniqueInstance._driver != null)
+            {
+                _uniqueInstance._driver.Quit();
+            }            
         }
 
     }
