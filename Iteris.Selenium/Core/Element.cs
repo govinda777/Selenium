@@ -1,36 +1,31 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Selenium.Core.Interface;
+using Selenium.Infra.Helper.Interface;
 
-namespace Facade.Selenium.Infra
+namespace Selenium.Core
 {
     /// <summary>
     /// Classe responsável pela manipulação dos elementos
     /// </summary>
-    public class Element : Base
+    public class Element : IElement
     {
-        public Element(Type webDriverType, string driverServerDirectory, string pathEvidence)
-            : base(webDriverType, driverServerDirectory, pathEvidence)
+        private readonly IWebDriver _driver;
+        private readonly ISafeExecution _safeExecution;
+
+        public Element(IWebDriver driver, ISafeExecution safeExecution)
         {
-            Initialize();
-        }
-        
-        public Element(Type webDriverType, string driverServerDirectory)
-            : base(webDriverType, driverServerDirectory)
-        {
-            Initialize();
-        }
-        
-        public Element(Type webDriverType)
-            : base(webDriverType)
-        {
+            _driver = driver;
+            _safeExecution = safeExecution;
+
             Initialize();
         }
 
         public void Initialize()
         {
-            Execute(() => {
-                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            _safeExecution.Execute(() => {
+                _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             });
         }
 
@@ -41,10 +36,7 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public IWebElement FindElementById(string elementId)
         {            
-            return Execute<IWebElement>(() =>
-            {
-                return driver.FindElement(By.Id(elementId));
-            });
+            return _safeExecution.Execute<IWebElement>(() => _driver.FindElement(By.Id(elementId)));
         }
 
         /// <summary>
@@ -54,10 +46,7 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public IWebElement FindElementByName(string elementName)
         {
-            return Execute<IWebElement>(() =>
-            {
-                return driver.FindElement(By.Name(elementName));
-            });
+            return _safeExecution.Execute<IWebElement>(() => _driver.FindElement(By.Name(elementName)));
         }
 
         /// <summary>
@@ -67,10 +56,7 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public IWebElement FindElementByClassName(string className)
         {
-            return Execute<IWebElement>(() =>
-            {
-                return driver.FindElement(By.ClassName(className));
-            });
+            return _safeExecution.Execute<IWebElement>(() => _driver.FindElement(By.ClassName(className)));
         }
 
         /// <summary>
@@ -80,10 +66,7 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public IWebElement FindElement(By selector)
         {
-            return Execute<IWebElement>(() =>
-            {
-                return driver.FindElement(selector);
-            });
+            return _safeExecution.Execute<IWebElement>(() => _driver.FindElement(selector));
         }
 
         /// <summary>
@@ -93,13 +76,13 @@ namespace Facade.Selenium.Infra
         /// <param name="selector">Seletor</param>
         public void Submit(By selector)
         {
-            string evidenceName = "Submit";
+            var evidenceName = "Submit";
 
-            ExecuteWithEvidence(evidenceName, () =>
+            _safeExecution.ExecuteWithEvidence(evidenceName, () =>
             {
-                driver.SwitchTo().ActiveElement().Equals(driver.FindElement(selector));
+                _driver.SwitchTo().ActiveElement().Equals(_driver.FindElement(selector));
 
-                driver.FindElement(selector).Submit();
+                _driver.FindElement(selector).Submit();
             });
         }
 
@@ -111,11 +94,11 @@ namespace Facade.Selenium.Infra
         {
             string evidenceName = "Click";
 
-            ExecuteWithEvidence(evidenceName, () =>
+            _safeExecution.ExecuteWithEvidence(evidenceName, () =>
             {
-                driver.SwitchTo().ActiveElement().Equals(driver.FindElement(selector));
+                _driver.SwitchTo().ActiveElement().Equals(_driver.FindElement(selector));
 
-                driver.FindElement(selector).Click();
+                _driver.FindElement(selector).Click();
             });
         }
 
@@ -126,9 +109,9 @@ namespace Facade.Selenium.Infra
         /// <param name="value">Valor que será preenchido</param>
         public void SendKeys(IWebElement element, string value)
         {
-            string evidenceName = string.Format("Escrevendo '{0}' no campo '{1}' ", value, element.TagName);
+            string evidenceName = $"Escrevendo '{value}' no campo '{element.TagName}' ";
 
-            ExecuteWithEvidence(evidenceName, () =>
+            _safeExecution.ExecuteWithEvidence(evidenceName, () =>
             {
                 element.Clear();
                 element.SendKeys(value);
@@ -143,10 +126,7 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public string GetAttribute(string elementId, string attributeName)
         {
-            return Execute(() =>
-            {
-                return FindElementById(elementId).GetAttribute(attributeName);
-            });
+            return _safeExecution.Execute(() => FindElementById(elementId).GetAttribute(attributeName));
         }
 
         /// <summary>
@@ -156,10 +136,7 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public string GetValue(string elementId)
         {
-            return Execute(() =>
-            {
-                return FindElementById(elementId).GetAttribute("value");
-            });
+            return _safeExecution.Execute(() => FindElementById(elementId).GetAttribute("value"));
         }
 
         /// <summary>
@@ -169,7 +146,7 @@ namespace Facade.Selenium.Infra
         /// <param name="value">Valor que deverá ser selecionado</param>
         public void SelectDropDownByValue(IWebElement element, string value)
         {
-            ExecuteWithEvidence(() =>
+            _safeExecution.ExecuteWithEvidence(() =>
             {
                 var selectElement = new SelectElement(element);
 
@@ -185,11 +162,10 @@ namespace Facade.Selenium.Infra
         /// <param name="text">Texto que deverá ser selecionado</param>
         public void SelectDropDownByText(IWebElement element, string text)
         {
-            ExecuteWithEvidence(() =>
+            _safeExecution.ExecuteWithEvidence(() =>
             {
                 var selectElement = new SelectElement(element);
-
-                // select by text
+                
                 selectElement.SelectByText(text);
             });
         }

@@ -1,16 +1,20 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
+using Selenium.Core.Interface;
+using Selenium.Infra.Helper;
+using Selenium.Infra.Helper.Interface;
 
-namespace Facade.Selenium.Infra
+namespace Selenium.Core
 {
     public class Selenium : ISelenium
     {
+        private IWebDriver _driver;
+        private IScreenCapture _screenCapture;
+        private ISafeExecution _safeExecution;
         private readonly Type _webDriverType;
         private readonly string _driverServerDirectory;
         private readonly string _pathEvidence;
-
+        
         public Element Element { get; set; }
 
         public Navigation Navigation { get; set; }
@@ -35,10 +39,12 @@ namespace Facade.Selenium.Infra
 
         public void Initialize()
         {
+            _driver = SingletonWebDriver.GetInstance(_webDriverType, _driverServerDirectory).GetDriver();
+            _screenCapture = new ScreenCapture(_pathEvidence);
+            _safeExecution = new SafeExecution(_screenCapture);
 
-
-            Element = new Element(_webDriverType, _driverServerDirectory, _pathEvidence);
-            Navigation = new Navigation(_webDriverType, _driverServerDirectory, _pathEvidence);
+            Element = new Element(_driver, _safeExecution);
+            Navigation = new Navigation(_driver, _safeExecution);
         }
 
     }

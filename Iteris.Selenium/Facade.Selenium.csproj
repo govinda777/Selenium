@@ -71,14 +71,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Base.cs" />
+    <Compile Include="Infra\Helper\Interface\ISafeExecution.cs" />
+    <Compile Include="Infra\Helper\SafeExecution.cs" />
+    <Compile Include="Core\Interface\IElement.cs" />
+    <Compile Include="Core\Interface\INavigation.cs" />
     <Compile Include="Infra\CustomException.cs" />
     <Compile Include="Core\Element.cs" />
-    <Compile Include="Core\ISelenium.cs" />
+    <Compile Include="Core\Interface\ISelenium.cs" />
     <Compile Include="Core\Navigation.cs" />
     <Compile Include="Core\Selenium.cs" />
     <Compile Include="Core\SingletonWebDriver.cs" />
     <Compile Include="Infra\Helper\ScreenCapture.cs" />
+    <Compile Include="Infra\Helper\Interface\IScreenCapture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,47 +1,42 @@
 ﻿using System;
+using OpenQA.Selenium;
+using Selenium.Infra.Helper.Interface;
+using INavigation = Selenium.Core.Interface.INavigation;
 
-namespace Facade.Selenium.Infra
+namespace Selenium.Core
 {
     /// <summary>
     /// Classe responsavel pelos métodos de navegação 
     /// </summary>
-    public class Navigation : Base
+    public class Navigation : INavigation
     {
-        public Navigation(Type webDriverType, string driverServerDirectory, string pathEvidence)
-            : base(webDriverType, driverServerDirectory, pathEvidence)
+        private readonly IWebDriver _driver;
+        private readonly ISafeExecution _safeExecution;
+
+        public Navigation(IWebDriver driver, ISafeExecution safeExecution)
         {
+            _driver = driver;
+            _safeExecution = safeExecution;
+
             Initialize();
         }
-
-        public Navigation(Type webDriverType, string driverServerDirectory)
-            : base(webDriverType, driverServerDirectory)
-        {
-            Initialize();
-        }
-
-        public Navigation(Type webDriverType)
-            : base(webDriverType)
-        {
-            Initialize();
-        }
-
+        
         public void Initialize()
         {
-            Execute(() =>
+            _safeExecution.Execute(() =>
             {
-                driver.Manage().Window.Maximize();
+                _driver.Manage().Window.Maximize();
             });
         }
-
-
+        
         /// <summary>
         /// Fecha o Browser
         /// </summary>
         public void CloseWebBrowser()
         {
-            Execute(() =>
+            _safeExecution.Execute(() =>
             {
-                driver.Navigate().GoToUrl("about:blank");
+                _driver.Navigate().GoToUrl("about:blank");
             });
         }
 
@@ -51,9 +46,9 @@ namespace Facade.Selenium.Infra
         /// <param name="url"></param>
         public void OpenUrl(string url)
         {
-            ExecuteWithEvidence("Abrindo url", () =>
+            _safeExecution.ExecuteWithEvidence("Abrindo url", () =>
             {
-                driver.Navigate().GoToUrl(url);
+                _driver.Navigate().GoToUrl(url);
             });
         }
 
@@ -63,9 +58,9 @@ namespace Facade.Selenium.Infra
         /// <returns></returns>
         public string GetCurrentUrl()
         {
-            return Execute<string>(() =>
+            return _safeExecution.Execute<string>(() =>
             {
-                return driver.Url;
+                return _driver.Url;
             });
         }
 
@@ -74,9 +69,9 @@ namespace Facade.Selenium.Infra
         /// </summary>
         public void NavigateBack()
         {
-            ExecuteWithEvidence("Voltando página", () =>
+            _safeExecution.ExecuteWithEvidence("Voltando página", () =>
             {
-                driver.Navigate().Back();
+                _driver.Navigate().Back();
             });
         }
 

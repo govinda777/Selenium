@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
+using Selenium.Infra.Helper.Interface;
 
-namespace Facade.Selenium.Infra.Helper
+namespace Selenium.Infra.Helper
 {
     /// <summary>
     /// Provides functions to capture the entire screen, 
     /// or a particular window, and save it to a file.
     /// </summary>
-    public class ScreenCapture
+    public class ScreenCapture : IScreenCapture
     {
-        private string _pathEvidence;
+        private readonly string _pathEvidence;
 
         public ScreenCapture()
         {
@@ -32,6 +33,7 @@ namespace Facade.Selenium.Infra.Helper
         {
             return CaptureWindow( User32.GetDesktopWindow() );
         }
+
         /// <summary>
         /// Creates an Image object containing a screen shot of a specific window
         /// </summary>
@@ -67,6 +69,7 @@ namespace Facade.Selenium.Infra.Helper
             GDI32.DeleteObject(hBitmap);
             return img;
         }
+
         /// <summary>
         /// Captures a screen shot of a specific window, and saves it to a file
         /// </summary>
@@ -78,6 +81,7 @@ namespace Facade.Selenium.Infra.Helper
             Image img = CaptureWindow(handle);
             img.Save(filename,format);
         }
+
         /// <summary>
         /// Captures a screen shot of the entire desktop, and saves it to a file
         /// </summary>

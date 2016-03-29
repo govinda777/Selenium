@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Facade.Selenium.Infra
+namespace Selenium.Infra
 {
     [Serializable]
     public class FacadeSelemiunException : Exception

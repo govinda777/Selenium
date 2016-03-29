@@ -1,37 +1,23 @@
 ﻿using System;
 using OpenQA.Selenium;
-using Facade.Selenium.Infra.Helper;
+using Selenium.Infra.Helper;
+using Selenium.Infra.Helper.Interface;
 
-namespace Facade.Selenium.Infra
+namespace Selenium.Core
 {
     /// <summary>
     /// Classe base para Selemiun
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Base
+    public class SafeExecution : ISafeExecution
     {
-        public readonly IWebDriver driver;
-        private string _driverServerDirectory;
-        private string _pathEvidence;
-
-        private ScreenCapture screenCapture;
+        private readonly IScreenCapture _screenCapture;
         
-        public Base(Type webDriverType)
+        public SafeExecution(IScreenCapture screenCapture)
         {
-            driver = SingletonWebDriver.GetInstance(webDriverType, _driverServerDirectory).GetDriver();
-            screenCapture = new ScreenCapture(_pathEvidence);
+            _screenCapture = screenCapture;
         }
         
-        public Base(Type webDriverType, string driverServerDirectory) : this(webDriverType)
-        {
-            _driverServerDirectory = driverServerDirectory;
-        }
-        
-        public Base(Type webDriverType, string driverServerDirectory, string pathEvidence) : this(webDriverType, driverServerDirectory)
-        {
-            _pathEvidence = pathEvidence;
-        }
-
         #region Execute
 
         /// <summary>
@@ -46,7 +32,7 @@ namespace Facade.Selenium.Infra
             }
             catch (Exception ex)
             {
-                LogError(ex);
+                
             }
         }
 
@@ -66,7 +52,7 @@ namespace Facade.Selenium.Infra
             }
             catch (Exception ex)
             {
-                LogError(ex);
+                
             }
 
             return (T)Activator.CreateInstance(typeof(T));
@@ -93,7 +79,7 @@ namespace Facade.Selenium.Infra
         public void ExecuteWithEvidence(string evidenceName, Action action)
         {
             Execute(action);
-            screenCapture.CaptureScreen(evidenceName);   
+            _screenCapture.CaptureScreen(evidenceName);   
         }
 
         /// <summary>
@@ -118,7 +104,7 @@ namespace Facade.Selenium.Infra
         {
             T result = Execute<T>(action);
 
-            new ScreenCapture().CaptureScreen(evidenceName);
+            _screenCapture.CaptureScreen(evidenceName);
 
             return result;
         }
