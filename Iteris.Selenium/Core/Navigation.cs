@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace Facade.Selenium.Core
+namespace Facade.Selenium.Infra
 {
     /// <summary>
     /// Classe responsavel pelos métodos de navegação 
     /// </summary>
-    /// <typeparam name="T">Classe que implementa IWebDriver</typeparam>
     public class Navigation : Base
     {
         public Navigation(Type webDriverType, string driverServerDirectory, string pathEvidence)

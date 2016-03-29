@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using Facade.Selenium.Infra.Helper;
-using Facade.Selenium.Core;
+using Facade.Selenium.Infra;
 
 
 namespace Facade.Selenium.Test.SeleniumTest.Core.Helper

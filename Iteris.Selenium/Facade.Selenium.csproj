@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Base.cs" />
-    <Compile Include="Core\CustomException.cs" />
+    <Compile Include="Infra\CustomException.cs" />
     <Compile Include="Core\Element.cs" />
     <Compile Include="Core\ISelenium.cs" />
     <Compile Include="Core\Navigation.cs" />

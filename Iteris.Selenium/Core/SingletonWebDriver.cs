@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Firefox;
 using System;
 
-namespace Facade.Selenium.Core
+namespace Facade.Selenium.Infra
 {
     /// <summary>
     /// Classe responsável por impedir que existam várias instancias de WebDriver, 

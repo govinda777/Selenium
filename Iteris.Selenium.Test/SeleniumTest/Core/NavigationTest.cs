@@ -1,6 +1,6 @@
 ﻿using System;
 using Facade.Selenium.Infra.Helper;
-using Facade.Selenium.Core;
+using Facade.Selenium.Infra;
 using OpenQA.Selenium.Chrome;
 
 namespace Facade.Selenium.Test.SeleniumTest.Core

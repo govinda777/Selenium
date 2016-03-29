@@ -1,4 +1,4 @@
-﻿namespace Facade.Selenium.Core
+﻿namespace Facade.Selenium.Infra
 {
     public interface ISelenium
     {

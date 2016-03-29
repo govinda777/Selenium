@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 
-namespace Facade.Selenium.Core
+namespace Facade.Selenium.Infra
 {
     public class Selenium : ISelenium
     {

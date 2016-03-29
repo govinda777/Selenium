@@ -1,6 +1,6 @@
 ﻿using System;
 using Facade.Selenium.Infra;
-using Facade.Selenium.Core;
+using Facade.Selenium.Infra;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
-using SeleniumCore = Facade.Selenium.Core;
+using SeleniumCore = Facade.Selenium.Infra;
 using System.Collections;
 
 namespace Facade.Selenium.Test.SeleniumTest.Core

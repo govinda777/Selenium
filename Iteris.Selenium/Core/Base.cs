@@ -2,13 +2,13 @@
 using OpenQA.Selenium;
 using Facade.Selenium.Infra.Helper;
 
-namespace Facade.Selenium.Core
+namespace Facade.Selenium.Infra
 {
     /// <summary>
     /// Classe base para Selemiun
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Base
+    public class Base
     {
         public readonly IWebDriver driver;
         private string _driverServerDirectory;
@@ -124,12 +124,7 @@ namespace Facade.Selenium.Core
         }
 
         #endregion
-
-        public void LogError(Exception ex)
-        {
-
-        }
-
+        
     }
 
 }

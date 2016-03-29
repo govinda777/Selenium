@@ -2,12 +2,11 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Facade.Selenium.Core
+namespace Facade.Selenium.Infra
 {
     /// <summary>
     /// Classe responsável pela manipulação dos elementos
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class Element : Base
     {
         public Element(Type webDriverType, string driverServerDirectory, string pathEvidence)
