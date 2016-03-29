@@ -3,12 +3,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
 using Xunit.Extensions;
-using Selenium.Test.SeleniumTest.Core;
 using System.Collections.Generic;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
 using System.Collections;
+using Selenium.Infra.Helper.Test;
 
 namespace Facade.Selenium.Test.SeleniumTest.Core
 {
@@ -39,6 +39,7 @@ namespace Facade.Selenium.Test.SeleniumTest.Core
             }
         }
 
+        [Trait("Teste123", "CI")]
         [Theory]
         [Browser(typeof(FirefoxDriver))]
         [Browser(typeof(InternetExplorerDriver))]
@@ -48,6 +49,7 @@ namespace Facade.Selenium.Test.SeleniumTest.Core
             selenium.Initialize();
         }
 
+        [Trait("TesteABC", "CI")]
         [Theory]
         [ClassData(typeof(FibonacciTestSource))]
         public void Test_List_Browser(global::Selenium.Core.Selenium selenium)

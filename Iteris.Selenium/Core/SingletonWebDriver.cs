@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 
 namespace Selenium.Core
@@ -36,10 +37,15 @@ namespace Selenium.Core
         {
             if (webDriverType == typeof(FirefoxDriver))
             {
-                return new FirefoxDriver(new FirefoxBinary(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"),
+                return new FirefoxDriver(new FirefoxBinary(_driverServerDirectory),
                                          new FirefoxProfile());
             }
 
+            if (webDriverType == typeof(ChromeDriver))
+            {
+                return new ChromeDriver(_driverServerDirectory);
+            }
+            
             return null;
         }
 

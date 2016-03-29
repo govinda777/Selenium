@@ -83,15 +83,16 @@
     <Compile Include="Core\SingletonWebDriver.cs" />
     <Compile Include="Infra\Helper\ScreenCapture.cs" />
     <Compile Include="Infra\Helper\Interface\IScreenCapture.cs" />
+    <Compile Include="Infra\Helper\Test\BrowserAttribute.cs" />
+    <Compile Include="Infra\Helper\Test\BrowserConfig.cs" />
+    <Compile Include="Infra\ReadConfig\BrowserSection.cs" />
+    <Compile Include="Infra\ReadConfig\BrowsersElement.cs" />
+    <Compile Include="Infra\ReadConfig\BrowsersElementCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Core\Config\ChromeDriver\chromedriver.exe" />
-    <Content Include="Core\Config\IEDriverServer_x64_2.47.0\IEDriverServer.exe" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
