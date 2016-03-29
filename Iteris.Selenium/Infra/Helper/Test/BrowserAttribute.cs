@@ -20,7 +20,7 @@ namespace Selenium.Infra.Helper.Test
         
         public BrowserAttribute(Type browser)
         {
-            
+            Browser = new BrowserConfig().GetBrowser(browser);
         }
 
         public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest)

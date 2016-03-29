@@ -25,51 +25,23 @@ namespace Facade.Selenium.Test.SeleniumTest.Core
 
         }
         
-        public static IEnumerable<object> Browsers
-        {
-            get
-            {
-                var result = new [] {
-                                    new [] { new global::Selenium.Core.Selenium(typeof(InternetExplorerDriver)) },
-                                    new [] { new global::Selenium.Core.Selenium(typeof(FirefoxDriver)) },
-                                    new [] { new global::Selenium.Core.Selenium(typeof(OperaDriver)) }
-                                };
-
-                yield return result;
-            }
-        }
-
         [Trait("Teste123", "CI")]
         [Theory]
         [Browser(typeof(FirefoxDriver))]
-        [Browser(typeof(InternetExplorerDriver))]
-        [Browser(typeof(OperaDriver))]
+        [Browser(typeof(ChromeDriver))]
         public void FindElementByIdTest(global::Selenium.Core.Selenium selenium)
         {
             selenium.Initialize();
+            selenium.Navigation.CloseWebBrowser();
         }
 
         [Trait("TesteABC", "CI")]
         [Theory]
-        [ClassData(typeof(FibonacciTestSource))]
+        [ClassData(typeof(BrowserConfig))]
         public void Test_List_Browser(global::Selenium.Core.Selenium selenium)
         {
             selenium.Initialize();
-        }
-
-    }
-
-    public class FibonacciTestSource : IEnumerable<object[]>
-    {
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            yield return new object[] { new global::Selenium.Core.Selenium(typeof(InternetExplorerDriver)) };
-            yield return new object[] { new global::Selenium.Core.Selenium(typeof(FirefoxDriver)) };
-        }
-        
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            selenium.Navigation.CloseWebBrowser();
         }
     }
 }

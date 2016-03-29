@@ -31,7 +31,7 @@ namespace Selenium.Infra.Helper.Test
         public BrowsersElement GetBrowsersElement(Type browser)
         {
             return (from BrowsersElement be in _browsersElements
-                    where be.WebDriverType == browser.ToString()
+                    where be.WebDriverType == browser.Name
                     select be).FirstOrDefault();
         }
 
@@ -48,19 +48,21 @@ namespace Selenium.Infra.Helper.Test
             {
                 return  new Core.Selenium(typeof(FirefoxDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
             }
-
-            if (browser == typeof(OperaDriver))
-            {
-                return new Core.Selenium(typeof(OperaDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
-            }
-
+            
             return null;
         }
 
         public IEnumerator<object[]> GetEnumerator()
         {
-            yield return new object[] { new global::Selenium.Core.Selenium(typeof(InternetExplorerDriver)) };
-            yield return new object[] { new global::Selenium.Core.Selenium(typeof(FirefoxDriver)) };
+            if (GetBrowsersElement(typeof(ChromeDriver)) != null)
+            {
+                yield return new object[] { GetBrowser(typeof(ChromeDriver)) };
+            }
+
+            if (GetBrowsersElement(typeof (FirefoxDriver)) != null)
+            {
+                yield return new object[] { GetBrowser(typeof(FirefoxDriver)) };
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
