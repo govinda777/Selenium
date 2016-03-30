@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Iteris.Selenium\Facade.Selenium.csproj">
+    <ProjectReference Include="..\Facade.Selenium\Facade.Selenium.csproj">
       <Project>{ad181fa3-1920-45f2-b9db-9f5c9ee69e9c}</Project>
       <Name>Facade.Selenium</Name>
     </ProjectReference>
