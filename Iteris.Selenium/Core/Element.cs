@@ -1,10 +1,10 @@
 ﻿using System;
+using Facade.Selenium.Core.Interface;
+using Facade.Selenium.Infra.Helper.Interface;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Selenium.Core.Interface;
-using Selenium.Infra.Helper.Interface;
 
-namespace Selenium.Core
+namespace Facade.Selenium.Core
 {
     /// <summary>
     /// Classe responsável pela manipulação dos elementos

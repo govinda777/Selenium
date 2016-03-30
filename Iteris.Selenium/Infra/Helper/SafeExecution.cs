@@ -1,9 +1,7 @@
 ﻿using System;
-using OpenQA.Selenium;
-using Selenium.Infra.Helper;
-using Selenium.Infra.Helper.Interface;
+using Facade.Selenium.Infra.Helper.Interface;
 
-namespace Selenium.Core
+namespace Facade.Selenium.Infra.Helper
 {
     /// <summary>
     /// Classe base para Selemiun

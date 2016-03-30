@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Reflection;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Opera;
-using Selenium.Core.Interface;
-using Selenium.Infra.ReadConfig;
+using Facade.Selenium.Core.Interface;
 using Xunit.Sdk;
-using System.Linq;
 
-namespace Selenium.Infra.Helper.Test
+namespace Facade.Selenium.Infra.Helper.Browser
 {
     public class BrowserAttribute : DataAttribute
     {

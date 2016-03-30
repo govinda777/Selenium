@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace Selenium.Infra.Helper.Interface
+namespace Facade.Selenium.Infra.Helper.Interface
 {
     public interface IScreenCapture
     {

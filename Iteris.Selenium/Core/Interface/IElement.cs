@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Selenium.Core.Interface
+namespace Facade.Selenium.Core.Interface
 {
     public interface IElement
     {

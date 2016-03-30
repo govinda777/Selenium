@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Facade.Selenium.Infra.Helper.Interface;
 using OpenQA.Selenium;
-using Selenium.Infra.Helper.Interface;
-using INavigation = Selenium.Core.Interface.INavigation;
 
-namespace Selenium.Core
+namespace Facade.Selenium.Core
 {
     /// <summary>
     /// Classe responsavel pelos métodos de navegação 
     /// </summary>
-    public class Navigation : INavigation
+    public class Navigation : Facade.Selenium.Core.Interface.INavigation
     {
         private readonly IWebDriver _driver;
         private readonly ISafeExecution _safeExecution;

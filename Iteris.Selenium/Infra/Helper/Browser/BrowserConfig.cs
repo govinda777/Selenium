@@ -1,15 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using Selenium.Infra.ReadConfig;
-using System;
 using System.Linq;
+using Facade.Selenium.Infra.ReadConfig;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Opera;
+using OpenQA.Selenium.Firefox;
 
-namespace Selenium.Infra.Helper.Test
+namespace Facade.Selenium.Infra.Helper.Browser
 {
     public class BrowserConfig : IEnumerable<object[]>
     {
@@ -35,18 +33,18 @@ namespace Selenium.Infra.Helper.Test
                     select be).FirstOrDefault();
         }
 
-        public Core.Selenium GetBrowser(Type browser)
+        public Facade.Selenium.Core.Selenium GetBrowser(Type browser)
         {
             var browsersElement = GetBrowsersElement(browser);
             
             if (browser == typeof(ChromeDriver))
             {
-                return new Core.Selenium(typeof(ChromeDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
+                return new Facade.Selenium.Core.Selenium(typeof(ChromeDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
             }
 
             if (browser == typeof(FirefoxDriver))
             {
-                return  new Core.Selenium(typeof(FirefoxDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
+                return  new Facade.Selenium.Core.Selenium(typeof(FirefoxDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
             }
             
             return null;

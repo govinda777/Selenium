@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
-using Selenium.Infra.Helper.Interface;
+using Facade.Selenium.Infra.Helper.Interface;
 
-namespace Selenium.Infra.Helper
+namespace Facade.Selenium.Infra.Helper
 {
     /// <summary>
     /// Provides functions to capture the entire screen, 
