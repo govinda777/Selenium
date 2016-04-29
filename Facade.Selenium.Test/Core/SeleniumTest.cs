@@ -6,7 +6,7 @@ namespace Selenium.Test.Core
 {
     public class SeleniumTest
     {
-        [Fact]
+        
         public void TestMethod1()
         {
         }

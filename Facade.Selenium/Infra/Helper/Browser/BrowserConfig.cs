@@ -33,7 +33,7 @@ namespace Facade.Selenium.Infra.Helper.Browser
                     select be).FirstOrDefault();
         }
 
-        public Facade.Selenium.Core.Selenium GetBrowser(Type browser)
+        public Core.Selenium GetBrowser(Type browser)
         {
             var browsersElement = GetBrowsersElement(browser);
             
