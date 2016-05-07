@@ -53,7 +53,7 @@ namespace Facade.Selenium.Infra.Helper
                 
             }
 
-            return (T)Activator.CreateInstance(typeof(T));
+            return default(T);
         }
 
         #endregion
