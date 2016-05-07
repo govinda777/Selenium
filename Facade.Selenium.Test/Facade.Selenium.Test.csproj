@@ -86,6 +86,7 @@
     <Compile Include="Infra\Helper\Browser\BrowserConfigTest.cs" />
     <Compile Include="Infra\Helper\SafeExecutionTest.cs" />
     <Compile Include="Infra\Helper\ScreenCaptureTest.cs" />
+    <Compile Include="Infra\Helper\UrlTest.cs" />
     <Compile Include="Infra\ReadConfig\BrowserSectionTest.cs" />
     <Compile Include="Infra\ReadConfig\BrowsersElementCollectionTest.cs" />
     <Compile Include="Infra\ReadConfig\BrowsersElementTest.cs" />

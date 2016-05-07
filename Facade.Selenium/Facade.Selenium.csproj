@@ -85,6 +85,7 @@
     <Compile Include="Infra\Helper\Interface\IScreenCapture.cs" />
     <Compile Include="Infra\Helper\Browser\BrowserAttribute.cs" />
     <Compile Include="Infra\Helper\Browser\BrowserConfig.cs" />
+    <Compile Include="Infra\Helper\Url.cs" />
     <Compile Include="Infra\ReadConfig\BrowserSection.cs" />
     <Compile Include="Infra\ReadConfig\BrowsersElement.cs" />
     <Compile Include="Infra\ReadConfig\BrowsersElementCollection.cs" />

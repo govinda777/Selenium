@@ -1,5 +1,6 @@
 ﻿using System;
 using Facade.Selenium.Infra.Helper.Interface;
+using System.Threading;
 
 namespace Facade.Selenium.Infra.Helper
 {
@@ -27,6 +28,7 @@ namespace Facade.Selenium.Infra.Helper
             try
             {
                 action();
+                Thread.Sleep(5000);
             }
             catch (Exception ex)
             {

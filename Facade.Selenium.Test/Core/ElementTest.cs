@@ -6,14 +6,18 @@ using Facade.Selenium.Core.Interface;
 using OpenQA.Selenium.Firefox;
 using SCore = Facade.Selenium.Core;
 using OpenQA.Selenium;
+using Facade.Selenium.Infra.Helper;
 
 namespace Selenium.Test.Core
 {
     public class ElementTest
     {
         private readonly string _url = @"http://iteris.com.br/v2/";
-        private readonly string _id = @"home-menu-links";
-        private readonly string _idNotFound = @"wnveoiwevowçnioçnoilkn";
+        private readonly string _url2 = @"https://www.microsoft.com/pt-br/account";
+        private readonly string _elementId = @"home-menu-links";
+        private readonly string _elementIdNotFound = @"wnveoiwevowçnioçnoilkn";
+        private readonly string _button = @"button-blue-16";
+        private readonly string _buttonNotFound = @"svsmçldvmçsldv";
         private readonly string _name = @"description";
         private readonly string _nameNotFound = @"avndçsvnsçdvçsldvçl";
         private readonly string _class = @"seta-verde";
@@ -23,11 +27,16 @@ namespace Selenium.Test.Core
 
         public void Initialize(SCore.Selenium browser)
         {
+            Initialize(browser, _url);
+        }
+
+        public void Initialize(SCore.Selenium browser, string url)
+        {
             _browser = browser;
 
             _browser.Initialize();
 
-            _browser.Navigation.OpenUrl(_url);
+            _browser.Navigation.OpenUrl(url);
         }
 
         public void Dispose()
@@ -44,7 +53,7 @@ namespace Selenium.Test.Core
             Initialize(browser);
 
             // Act
-            var element = browser.Element.FindElementById(_id);
+            var element = browser.Element.FindElementById(_elementId);
 
             // Assert
             Assert.True(element != null);
@@ -59,7 +68,7 @@ namespace Selenium.Test.Core
             Initialize(browser);
 
             // Act
-            var element = browser.Element.FindElementById(_idNotFound);
+            var element = browser.Element.FindElementById(_elementIdNotFound);
 
             // Assert
             Assert.True(element == null);
@@ -131,7 +140,7 @@ namespace Selenium.Test.Core
         public void FindElement_InPage_ReturnsTheElement(SCore.Selenium browser)
         {
             // Arrange
-            var id = By.Id(_id);
+            var id = By.Id(_elementId);
             Initialize(browser);
 
             // Act
@@ -148,7 +157,7 @@ namespace Selenium.Test.Core
         public void FindElement_InPage_ElementNotFound(SCore.Selenium browser)
         {
             // Arrange
-            var id = By.Id(_idNotFound);
+            var id = By.Id(_elementIdNotFound);
             Initialize(browser);
 
             // Act
@@ -164,7 +173,24 @@ namespace Selenium.Test.Core
         [ClassData(typeof(BrowserConfig))]
         public void Submit(SCore.Selenium browser)
         {
-            
+            // Arrange
+            var button = By.Id("idSIButton9");
+            var txtLogin = By.Name("loginfmt");
+            var txtPasswd = By.Name("passwd");
+            var valLogin = "luan_govinda777@hotmail.com";
+            var valPass = "Hermeserenato1";
+            string currentUrl;
+            string resultUrl = @"http://account.microsoft.com";
+            Initialize(browser, @"https://login.live.com/login.srf");
+
+            // Act
+            browser.Element.SendKeys(txtLogin, valLogin);
+            browser.Element.SendKeys(txtPasswd, valPass);
+            browser.Element.Click(button);
+            currentUrl = browser.Navigation.GetCurrentUrl();
+
+            // Assert
+            Assert.True(resultUrl.Normalize() == currentUrl.NormalizeUrl());
         }
 
         [Trait("Click", "Element")]
@@ -172,7 +198,18 @@ namespace Selenium.Test.Core
         [ClassData(typeof(BrowserConfig))]
         public void Click(SCore.Selenium browser)
         {
-            
+            // Arrange
+            var button = By.ClassName(_button);
+            var resultUrl = @"https://login.live.com/login.srf";
+            string currentUrl;
+            Initialize(browser, _url2);
+
+            // Act
+            browser.Element.Click(button);
+            currentUrl = browser.Navigation.GetCurrentUrl();
+
+            // Assert
+            Assert.True(currentUrl.NormalizeUrl() == resultUrl.NormalizeUrl());
         }
 
         [Trait("SendKeys", "Element")]
@@ -180,7 +217,7 @@ namespace Selenium.Test.Core
         [ClassData(typeof(BrowserConfig))]
         public void SendKeys(SCore.Selenium browser)
         {
-            
+
         }
 
         [Trait("GetAttribute", "Element")]

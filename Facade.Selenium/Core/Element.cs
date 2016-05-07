@@ -107,6 +107,16 @@ namespace Facade.Selenium.Core
         /// </summary>
         /// <param name="element">Elemento</param>
         /// <param name="value">Valor que será preenchido</param>
+        public void SendKeys(By selector, string value)
+        {
+            SendKeys(FindElement(selector), value);
+        }
+
+        /// <summary>
+        /// Escreve no elemento selecionado
+        /// </summary>
+        /// <param name="element">Elemento</param>
+        /// <param name="value">Valor que será preenchido</param>
         public void SendKeys(IWebElement element, string value)
         {
             string evidenceName = $"Escrevendo '{value}' no campo '{element.TagName}' ";
@@ -116,6 +126,8 @@ namespace Facade.Selenium.Core
                 element.Clear();
                 element.SendKeys(value);
             });
+
+
         }
 
         /// <summary>
