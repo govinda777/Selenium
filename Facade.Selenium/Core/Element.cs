@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Facade.Selenium.Core
 {
     /// <summary>
-    /// Classe responsável pela manipulação dos elementos
+    /// Classe responsável pela manipulação dos elementos.
     /// </summary>
     public class Element : IElement
     {
