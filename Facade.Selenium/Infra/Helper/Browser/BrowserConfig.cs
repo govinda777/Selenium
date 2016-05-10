@@ -41,7 +41,7 @@ namespace Facade.Selenium.Infra.Helper.Browser
             {
                 return new Facade.Selenium.Core.Selenium(typeof(ChromeDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
             }
-
+            
             if (browser == typeof(FirefoxDriver))
             {
                 return  new Facade.Selenium.Core.Selenium(typeof(FirefoxDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);

@@ -28,7 +28,7 @@ namespace Facade.Selenium.Infra.Helper
             try
             {
                 action();
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
             }
             catch (Exception ex)
             {

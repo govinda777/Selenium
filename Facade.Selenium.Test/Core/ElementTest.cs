@@ -7,10 +7,11 @@ using OpenQA.Selenium.Firefox;
 using SCore = Facade.Selenium.Core;
 using OpenQA.Selenium;
 using Facade.Selenium.Infra.Helper;
+using System;
 
 namespace Selenium.Test.Core
 {
-    public class ElementTest
+    public class ElementTest : IDisposable
     {
         private readonly string _url = @"http://iteris.com.br/v2/";
         private readonly string _url2 = @"https://www.microsoft.com/pt-br/account";
@@ -171,7 +172,7 @@ namespace Selenium.Test.Core
         [Trait("Submit", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void Submit(SCore.Selenium browser)
+        public void Submit_InPage_LogInToSystem(SCore.Selenium browser)
         {
             // Arrange
             var button = By.Id("idSIButton9");
@@ -196,7 +197,7 @@ namespace Selenium.Test.Core
         [Trait("Click", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void Click(SCore.Selenium browser)
+        public void Click_InPage_ClickInTheButton(SCore.Selenium browser)
         {
             // Arrange
             var button = By.ClassName(_button);
@@ -215,41 +216,101 @@ namespace Selenium.Test.Core
         [Trait("SendKeys", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void SendKeys(SCore.Selenium browser)
+        public void SendKeys_InPage_WriteLogin(SCore.Selenium browser)
         {
+            Initialize(browser, @"https://login.live.com/login.srf");
 
+            // Arrange
+            var txtLogin = By.Name("loginfmt");
+            var valLogin = "luan_govinda777@hotmail.com";
+            
+            // Act
+            browser.Element.SendKeys(txtLogin, valLogin);
+
+            // Assert
+            Assert.True(browser.Element.GetValue(txtLogin) == valLogin);
         }
 
         [Trait("GetAttribute", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void GetAttribute(SCore.Selenium browser)
+        public void GetAttribute_InPage_GetTheValueOfTheLoginField(SCore.Selenium browser)
         {
-            
+            Initialize(browser, @"https://login.live.com/login.srf");
+
+            // Arrange
+            var txtLogin = By.Name("loginfmt");
+            var valLogin = "luan_govinda777@hotmail.com";
+            string attr;
+
+            // Act
+            browser.Element.SendKeys(txtLogin, valLogin);
+            attr = browser.Element.GetAttribute(txtLogin, "value");
+
+            // Assert
+            Assert.True(attr == valLogin);
         }
 
         [Trait("GetValue", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void GetValue(SCore.Selenium browser)
+        public void GetValue_InPage_GetTheValueOfTheLoginField(SCore.Selenium browser)
         {
-            
+            Initialize(browser, @"https://login.live.com/login.srf");
+
+            // Arrange
+            var txtLogin = By.Name("loginfmt");
+            var valLogin = "luan_govinda777@hotmail.com";
+            string attr;
+
+            // Act
+            browser.Element.SendKeys(txtLogin, valLogin);
+            attr = browser.Element.GetValue(txtLogin);
+
+            // Assert
+            Assert.True(attr == valLogin);
         }
 
         [Trait("SelectDropDownByValue", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void SelectDropDownByValue(SCore.Selenium browser)
+        public void SelectDropDownByValue_InDDL_SelectTheBRLValue(SCore.Selenium browser)
         {
-            
-        }
+            Initialize(browser, @"https://www.paypal.com/us/webapps/mpp/home");
 
+            // Arrange
+            var passo1 = By.Id("header-send");
+            var dropDown = By.Id("currency_code");
+            string value;
+
+            // Act
+            browser.Element.Click(passo1);
+            browser.Element.SelectDropDownByValue(dropDown, "BRL");
+            value = browser.Element.GetValue(dropDown);
+
+            // Assert
+            Assert.True(value == "BRL");            
+        }
+        
         [Trait("SelectDropDownByText", "Element")]
         [Theory]
         [ClassData(typeof(BrowserConfig))]
-        public void SelectDropDownByText(SCore.Selenium browser)
+        public void SelectDropDownByText_InDDL_SelectTheBRLValue(SCore.Selenium browser)
         {
-            
+            Initialize(browser, @"https://www.paypal.com/us/webapps/mpp/home");
+
+            // Arrange
+            var passo1 = By.Id("header-send");
+            var dropDown = By.Id("currency_code");
+            string value;
+
+            // Act
+            browser.Element.Click(passo1);
+            browser.Element.SelectDropDownByText(dropDown, "BRL");
+            value = browser.Element.GetValue(dropDown);
+
+            // Assert
+            Assert.True(value == "BRL");
         }
     }
 }

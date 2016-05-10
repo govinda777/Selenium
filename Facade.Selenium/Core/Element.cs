@@ -141,6 +141,12 @@ namespace Facade.Selenium.Core
             return _safeExecution.Execute(() => FindElementById(elementId).GetAttribute(attributeName));
         }
 
+        public string GetAttribute(By selector, string attributeName)
+        {
+            return _safeExecution.Execute(() => FindElement(selector).GetAttribute(attributeName));
+        }
+
+
         /// <summary>
         /// Pega o valor do elemento
         /// </summary>
@@ -149,6 +155,16 @@ namespace Facade.Selenium.Core
         public string GetValue(string elementId)
         {
             return _safeExecution.Execute(() => FindElementById(elementId).GetAttribute("value"));
+        }
+
+        /// <summary>
+        /// Pega o valor do elemento
+        /// </summary>
+        /// <param name="elementId">Id do elemento</param>
+        /// <returns></returns>
+        public string GetValue(By selector)
+        {
+            return _safeExecution.Execute(() => FindElement(selector).GetAttribute("value"));
         }
 
         /// <summary>
@@ -182,5 +198,18 @@ namespace Facade.Selenium.Core
             });
         }
 
+        public void SelectDropDownByValue(By selector, string value)
+        {
+            var element = FindElement(selector);
+
+            SelectDropDownByValue(element, value);
+        }
+
+        public void SelectDropDownByText(By selector, string text)
+        {
+            var element = FindElement(selector);
+
+            SelectDropDownByText(element, text);            
+        }
     }
 }
