@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade.Selenium", "Facade.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade.Selenium.Test", "Facade.Selenium.Test\Facade.Selenium.Test.csproj", "{704C680C-8007-4957-8A54-49A06219AA33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facede.Selenium.TestAcceptance", "Facede.Selenium.TestAcceptance\Facede.Selenium.TestAcceptance.csproj", "{CA8D7ECF-FAF3-4CD6-9182-7F3664769E90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{704C680C-8007-4957-8A54-49A06219AA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{704C680C-8007-4957-8A54-49A06219AA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{704C680C-8007-4957-8A54-49A06219AA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8D7ECF-FAF3-4CD6-9182-7F3664769E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8D7ECF-FAF3-4CD6-9182-7F3664769E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8D7ECF-FAF3-4CD6-9182-7F3664769E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8D7ECF-FAF3-4CD6-9182-7F3664769E90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
