@@ -8,7 +8,7 @@ using Facade.Selenium.Infra.Helper;
 
 namespace Selenium.Test.Infra.Helper
 {
-    [Trait("Url", "Url")]
+    [Trait("Url", "")]
     public class UrlTest
     {
         [Fact]
