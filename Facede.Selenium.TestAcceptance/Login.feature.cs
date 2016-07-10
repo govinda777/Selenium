@@ -74,14 +74,12 @@ namespace Facede.Selenium.TestAcceptance
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Login")]
         [Xunit.TraitAttribute("Description", "Login na aplicacao com dados validos")]
-        [Xunit.TraitAttribute("Category", "TestAcceptanceLogin")]
         public virtual void LoginNaAplicacaoComDadosValidos()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login na aplicacao com dados validos", new string[] {
-                        "TestAcceptanceLogin"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login na aplicacao com dados validos", ((string[])(null)));
+#line 4
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
  testRunner.Given("Que possuo usuario e senha validos", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -90,9 +88,21 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "luan_govinda777@hotmail.com",
                         "Hermeserenato1"});
-#line 8
+            table1.AddRow(new string[] {
+                        "luan_govinda777@hotmail.com",
+                        "Hermeserenato1"});
+            table1.AddRow(new string[] {
+                        "luan_govinda777@hotmail.com",
+                        "Hermeserenato1"});
+            table1.AddRow(new string[] {
+                        "luan_govinda777@hotmail.com",
+                        "Hermeserenato1"});
+            table1.AddRow(new string[] {
+                        "luan_govinda777@hotmail.com",
+                        "Hermeserenato1"});
+#line 6
  testRunner.When("For me logar na aplicacao com os dados", ((string)(null)), table1, "Quando ");
-#line 11
+#line 13
  testRunner.Then("Conseguirei me logar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             this.ScenarioCleanup();

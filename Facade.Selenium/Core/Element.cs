@@ -35,7 +35,7 @@ namespace Facade.Selenium.Core
         /// <param name="elementId"></param>
         /// <returns></returns>
         public IWebElement FindElementById(string elementId)
-        {            
+        {
             return _safeExecution.Execute<IWebElement>(() => _driver.FindElement(By.Id(elementId)));
         }
 

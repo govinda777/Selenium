@@ -16,11 +16,11 @@ namespace Facade.Selenium.Infra.Helper
         {
             _screenCapture = screenCapture;
         }
-        
+
         #region Execute
 
         /// <summary>
-        /// Executa a ação e realiza um try cache caso ocorra algum erro.
+        /// Executa a ação e realiza um try catch caso ocorra algum erro.
         /// </summary>
         /// <param name="action">Código que será executado</param>
         public void Execute(Action action)
