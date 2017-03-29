@@ -6,7 +6,6 @@ using Xunit.Sdk;
 
 namespace Facade.Selenium.Infra.Helper.Browser
 {
-
     public class BrowserAttribute : DataAttribute
     {
         private ISelenium Browser { get; set; }

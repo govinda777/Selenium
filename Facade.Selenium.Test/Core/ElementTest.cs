@@ -13,11 +13,11 @@ namespace Selenium.Test.Core
 {
     public class ElementTest : IDisposable
     {
-        private readonly string _url = @"http://iteris.com.br/v2/";
+        private readonly string _url = @"http://iteris.com.br/";
         private readonly string _url2 = @"https://www.microsoft.com/pt-br/account";
         private readonly string _elementId = @"home-menu-links";
         private readonly string _elementIdNotFound = @"wnveoiwevowçnioçnoilkn";
-        private readonly string _button = @"button-blue-16";
+        private readonly string _button = @"button-blue-mini-200";
         private readonly string _buttonNotFound = @"svsmçldvmçsldv";
         private readonly string _name = @"description";
         private readonly string _nameNotFound = @"avndçsvnsçdvçsldvçl";
@@ -191,7 +191,7 @@ namespace Selenium.Test.Core
             currentUrl = browser.Navigation.GetCurrentUrl();
 
             // Assert
-            Assert.True(resultUrl.Normalize() == currentUrl.NormalizeUrl());
+            Assert.True(false, "Teste123");
         }
 
         [Trait("Click", "Element")]
