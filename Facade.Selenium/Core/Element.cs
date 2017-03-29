@@ -105,7 +105,7 @@ namespace Facade.Selenium.Core
         /// <summary>
         /// Escreve no elemento selecionado
         /// </summary>
-        /// <param name="element">Elemento</param>
+        /// <param name="element">Elemento ..</param>
         /// <param name="value">Valor que será preenchido</param>
         public void SendKeys(By selector, string value)
         {
