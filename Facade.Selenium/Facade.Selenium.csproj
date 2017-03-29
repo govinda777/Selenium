@@ -98,6 +98,14 @@
   <ItemGroup>
     <Folder Include="Core\Enum\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Webdriver\ChromeDriver\chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Webdriver\IEDriverServer\IEDriverServer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

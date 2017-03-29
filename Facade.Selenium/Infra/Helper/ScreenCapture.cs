@@ -13,16 +13,25 @@ namespace Facade.Selenium.Infra.Helper
     /// </summary>
     public class ScreenCapture : IScreenCapture
     {
+        private readonly string _pathEvidenceDefault = @"C:\Evidence";
         private readonly string _pathEvidence;
 
         public ScreenCapture()
         {
-            _pathEvidence = @"C:\Evidencias\";
+            _pathEvidence = _pathEvidenceDefault;
         }
 
         public ScreenCapture(string pathEvidence)
         {
-            _pathEvidence = pathEvidence;
+            if(string.IsNullOrEmpty(pathEvidence))
+            {
+                _pathEvidence = _pathEvidenceDefault;
+            }
+            else
+            {
+                _pathEvidence = pathEvidence;
+            }
+            
         }
 
         /// <summary>

@@ -126,8 +126,6 @@ namespace Facade.Selenium.Core
                 element.Clear();
                 element.SendKeys(value);
             });
-
-
         }
 
         /// <summary>

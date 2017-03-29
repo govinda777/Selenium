@@ -6,6 +6,7 @@ using System.Linq;
 using Facade.Selenium.Infra.ReadConfig;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System.IO;
 
 namespace Facade.Selenium.Infra.Helper.Browser
 {
@@ -25,7 +26,12 @@ namespace Facade.Selenium.Infra.Helper.Browser
                 throw new ConfigurationErrorsException();
             }
         }
-        
+
+        public string GetBrowsersElement(string browser)
+        {
+            return Path.Combine(System.Environment.CurrentDirectory, "Webdriver", browser);
+        }
+
         public BrowsersElement GetBrowsersElement(Type browser)
         {
             return (from BrowsersElement be in _browsersElements
@@ -35,16 +41,16 @@ namespace Facade.Selenium.Infra.Helper.Browser
 
         public Core.Selenium GetBrowser(Type browser)
         {
-            var browsersElement = GetBrowsersElement(browser);
+            var driverServerDirectory = GetBrowsersElement(browser.Name);
             
             if (browser == typeof(ChromeDriver))
             {
-                return new Facade.Selenium.Core.Selenium(typeof(ChromeDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
+                return new Facade.Selenium.Core.Selenium(typeof(ChromeDriver), driverServerDirectory);
             }
             
             if (browser == typeof(FirefoxDriver))
             {
-                return  new Facade.Selenium.Core.Selenium(typeof(FirefoxDriver), browsersElement.DriverServerDirectory, browsersElement.PathEvidence);
+                return  new Facade.Selenium.Core.Selenium(typeof(FirefoxDriver), driverServerDirectory);
             }
             
             return null;
